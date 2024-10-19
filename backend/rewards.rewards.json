@@ -1,0 +1,660 @@
+[{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620602"
+  },
+  "name": "露營裝備禮券",
+  "cost": 100,
+  "image": "/露營裝備禮券.png",
+  "interest": "Outdoor Junkies",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620603"
+  },
+  "name": "攀岩體驗",
+  "cost": 200,
+  "image": "/攀岩體驗.png",
+  "interest": "Outdoor Junkies",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620604"
+  },
+  "name": "戶外探險週末通行證",
+  "cost": 300,
+  "image": "/戶外探險週末通行證.png",
+  "interest": "Outdoor Junkies",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620605"
+  },
+  "name": "私人健身教練課程",
+  "cost": 150,
+  "image": "/私人健身教練課程.png",
+  "interest": "Fitness Gurus",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620606"
+  },
+  "name": "健身服飾禮品卡",
+  "cost": 80,
+  "image": "/健身服飾禮品卡.png",
+  "interest": "Fitness Gurus",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620607"
+  },
+  "name": "瑜伽課程套餐",
+  "cost": 120,
+  "image": "/瑜伽課程套餐.png",
+  "interest": "Fitness Gurus",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620608"
+  },
+  "name": "藝術用品禮券",
+  "cost": 90,
+  "image": "/藝術用品禮券.png",
+  "interest": "Creative Souls",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620609"
+  },
+  "name": "設計工作坊門票",
+  "cost": 180,
+  "image": "/設計工作坊門票.png",
+  "interest": "Creative Souls",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262060a"
+  },
+  "name": "繪畫課程體驗",
+  "cost": 160,
+  "image": "/繪畫課程體驗.png",
+  "interest": "Creative Souls",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262060b"
+  },
+  "name": "餐廳禮品卡",
+  "cost": 100,
+  "image": "/餐廳禮品卡.png",
+  "interest": "Food Explorers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262060c"
+  },
+  "name": "美食烹飪課程",
+  "cost": 140,
+  "image": "/美食烹飪課程.png",
+  "interest": "Food Explorers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262060d"
+  },
+  "name": "葡萄酒品鑒體驗",
+  "cost": 160,
+  "image": "/葡萄酒品鑒體驗.png",
+  "interest": "Food Explorers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262060e"
+  },
+  "name": "現場體育賽事門票",
+  "cost": 200,
+  "image": "/現場體育賽事門票.png",
+  "interest": "Diehard Sports Fans",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262060f"
+  },
+  "name": "運動器材禮券",
+  "cost": 150,
+  "image": "/運動器材禮券.png",
+  "interest": "Diehard Sports Fans",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620610"
+  },
+  "name": "體育紀念品",
+  "cost": 120,
+  "image": "/體育紀念品.png",
+  "interest": "Diehard Sports Fans",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620611"
+  },
+  "name": "遊戲服務訂閱",
+  "cost": 90,
+  "image": "/遊戲服務訂閱.png",
+  "interest": "Gamer at Heart",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620612"
+  },
+  "name": "遊戲耳機",
+  "cost": 130,
+  "image": "/遊戲耳機.png",
+  "interest": "Gamer at Heart",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620613"
+  },
+  "name": "遊戲主機配件",
+  "cost": 170,
+  "image": "/遊戲主機配件.png",
+  "interest": "Gamer at Heart",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620614"
+  },
+  "name": "酒店住宿禮券",
+  "cost": 250,
+  "image": "/酒店住宿禮券.png",
+  "interest": "Globetrotters",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620615"
+  },
+  "name": "航空里程獎勵",
+  "cost": 200,
+  "image": "/航空里程獎勵.png",
+  "interest": "Globetrotters",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620616"
+  },
+  "name": "旅行裝備禮券",
+  "cost": 150,
+  "image": "/旅行裝備禮券.png",
+  "interest": "Globetrotters",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620617"
+  },
+  "name": "演唱會門票",
+  "cost": 180,
+  "image": "/演唱會門票.png",
+  "interest": "Music Junkies",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620618"
+  },
+  "name": "音樂串流服務訂閱",
+  "cost": 80,
+  "image": "/音樂串流服務訂閱.png",
+  "interest": "Music Junkies",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620619"
+  },
+  "name": "黑膠唱片禮品卡",
+  "cost": 120,
+  "image": "/黑膠唱片禮品卡.png",
+  "interest": "Music Junkies",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262061a"
+  },
+  "name": "智能家居設備",
+  "cost": 300,
+  "image": "/智能家居設備.png",
+  "interest": "Tech Geeks",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262061b"
+  },
+  "name": "科技小工具禮品卡",
+  "cost": 150,
+  "image": "/科技小工具禮品卡.png",
+  "interest": "Tech Geeks",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262061c"
+  },
+  "name": "虛擬實境頭戴裝置體驗",
+  "cost": 250,
+  "image": "/虛擬實境頭戴裝置體驗.png",
+  "interest": "Tech Geeks",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262061d"
+  },
+  "name": "書店禮品卡",
+  "cost": 100,
+  "image": "/書店禮品卡.png",
+  "interest": "Book Lovers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262061e"
+  },
+  "name": "電子書訂閱服務",
+  "cost": 80,
+  "image": "/電子書訂閱服務.png",
+  "interest": "Book Lovers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262061f"
+  },
+  "name": "簽名書籍",
+  "cost": 140,
+  "image": "/簽名書籍.png",
+  "interest": "Book Lovers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620620"
+  },
+  "name": "電影票",
+  "cost": 90,
+  "image": "/電影票.png",
+  "interest": "Movie Buffs",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620621"
+  },
+  "name": "串流平台訂閱服務",
+  "cost": 70,
+  "image": "/串流平台訂閱服務.png",
+  "interest": "Movie Buffs",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620622"
+  },
+  "name": "電影周邊禮品套裝",
+  "cost": 150,
+  "image": "/電影周邊禮品套裝.png",
+  "interest": "Movie Buffs",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620623"
+  },
+  "name": "寵物店禮品卡",
+  "cost": 120,
+  "image": "/寵物店禮品卡.png",
+  "interest": "Pet Parents",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620624"
+  },
+  "name": "寵物美容服務",
+  "cost": 140,
+  "image": "/寵物美容服務.png",
+  "interest": "Pet Parents",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620625"
+  },
+  "name": "定制寵物配件",
+  "cost": 100,
+  "image": "/定制寵物配件.png",
+  "interest": "Pet Parents",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620626"
+  },
+  "name": "時尚精品店禮券",
+  "cost": 160,
+  "image": "/時尚精品店禮券.png",
+  "interest": "Style Enthusiasts",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620627"
+  },
+  "name": "個人造型服務",
+  "cost": 200,
+  "image": "/個人造型服務.png",
+  "interest": "Style Enthusiasts",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620628"
+  },
+  "name": "配件禮品套裝",
+  "cost": 130,
+  "image": "/配件禮品套裝.png",
+  "interest": "Style Enthusiasts",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620629"
+  },
+  "name": "環保產品入門套件",
+  "cost": 120,
+  "image": "/環保產品入門套件.png",
+  "interest": "Eco Warriors",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262062a"
+  },
+  "name": "環保家居產品禮券",
+  "cost": 100,
+  "image": "/環保家居產品禮券.png",
+  "interest": "Eco Warriors",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262062b"
+  },
+  "name": "可持續服裝禮品卡",
+  "cost": 150,
+  "image": "/可持續服裝禮品卡.png",
+  "interest": "Eco Warriors",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262062c"
+  },
+  "name": "派對用品禮品卡",
+  "cost": 100,
+  "image": "/派對用品禮品卡.png",
+  "interest": "Social Butterflies",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262062d"
+  },
+  "name": "獨家活動門票",
+  "cost": 180,
+  "image": "/獨家活動門票.png",
+  "interest": "Social Butterflies",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262062e"
+  },
+  "name": "雞尾酒調製課程",
+  "cost": 140,
+  "image": "/雞尾酒調製課程.png",
+  "interest": "Social Butterflies",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262062f"
+  },
+  "name": "健身追蹤器",
+  "cost": 200,
+  "image": "/健身追蹤器.png",
+  "interest": "Health Trackers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620630"
+  },
+  "name": "健康應用訂閱服務",
+  "cost": 90,
+  "image": "/健康應用訂閱服務.png",
+  "interest": "Health Trackers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620631"
+  },
+  "name": "健康補充品禮券",
+  "cost": 110,
+  "image": "/健康補充品禮券.png",
+  "interest": "Health Trackers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620632"
+  },
+  "name": "跳傘體驗",
+  "cost": 250,
+  "image": "/跳傘體驗.png",
+  "interest": "Thrill Seekers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620633"
+  },
+  "name": "高空彈跳禮券",
+  "cost": 220,
+  "image": "/高空彈跳禮券.png",
+  "interest": "Thrill Seekers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620634"
+  },
+  "name": "極限運動裝備禮品卡",
+  "cost": 180,
+  "image": "/極限運動裝備禮品卡.png",
+  "interest": "Thrill Seekers",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620635"
+  },
+  "name": "冥想應用訂閱",
+  "cost": 80,
+  "image": "/冥想應用訂閱.png",
+  "interest": "Mindfulness Advocates",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620636"
+  },
+  "name": "瑜伽靜修禮券",
+  "cost": 200,
+  "image": "/瑜伽靜修禮券.png",
+  "interest": "Mindfulness Advocates",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620637"
+  },
+  "name": "正念書籍套裝",
+  "cost": 100,
+  "image": "/正念書籍套裝.png",
+  "interest": "Mindfulness Advocates",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620638"
+  },
+  "name": "手工藝用品禮品卡",
+  "cost": 90,
+  "image": "/手工藝用品禮品卡.png",
+  "interest": "DIY Creators",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a2620639"
+  },
+  "name": "DIY 工作坊體驗",
+  "cost": 130,
+  "image": "/DIY 工作坊體驗.png",
+  "interest": "DIY Creators",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262063a"
+  },
+  "name": "定制工具套裝",
+  "cost": 170,
+  "image": "/定制工具套裝.png",
+  "interest": "DIY Creators",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262063b"
+  },
+  "name": "志願者體驗禮品卡",
+  "cost": 80,
+  "image": "/志願者體驗禮品卡.png",
+  "interest": "Community Heroes",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262063c"
+  },
+  "name": "慈善捐款禮券",
+  "cost": 60,
+  "image": "/慈善捐款禮券.png",
+  "interest": "Community Heroes",
+  "type": "redeem",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671355fdaeb0dc84a262063d"
+  },
+  "name": "社區活動通行證",
+  "cost": 100,
+  "image": "/社區活動通行證.png",
+  "interest": "Community Heroes",
+  "type": "redeem",
+  "__v": 0
+}]

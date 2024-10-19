@@ -11,7 +11,7 @@ function RewardsList({ rewards, onRedeem }) {
     <div className="rewards-list">
       {rewards.map((reward, index) => (
         <div className="reward-card" key={index} style={{ textAlign: 'center' }}>
-          <img src={reward.image} alt={"圖片"} 
+          <img src={reward.image} alt={reward.name} 
                 style={{ width: '150px', height: '27px' }}/>
           {/* <h4>{reward.name}</h4> */}
           <p>{reward.cost} 點</p>

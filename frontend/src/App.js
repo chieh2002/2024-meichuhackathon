@@ -82,14 +82,15 @@ function App() {
   const handleGacha = async () => {
     try {
       const response = await axios.post('http://localhost:5000/api/gacha');
+      console.log('Gacha result:', response.data);
       if (response.data.success) {
         setPoints(response.data.points);
       } else {
-        alert('抽獎失敗，請稍後再試');
+        // alert('抽獎失敗，請稍後再試');
       }
     } catch (error) {
       console.error('Error playing gacha:', error);
-      alert('抽獎失敗，請稍後再試');
+      // alert('抽獎失敗，請稍後再試');
     }
   };
 

@@ -5,7 +5,7 @@ function GachaMachine({ onGacha }) {
   const [reward, setReward] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [canPlay, setCanPlay] = useState(true);
-
+  const [isAnimating, setIsAnimating] = useState(false);
   useEffect(() => {
     checkCanPlay();
   }, []);
@@ -20,12 +20,18 @@ function GachaMachine({ onGacha }) {
       console.error('Error checking if user can play:', error);
     }
   };
+  const handleGachaClick = async () => {  // 这里添加 async 关键字
+    const confirmed = window.confirm('消耗 80 點進行抽獎，是否繼續？');
+    if (!confirmed) return;
 
-  const handleGachaClick = async () => {
-    if (!canPlay) {
-      alert('今天已經抽過獎了，請明天再來！');
-      return;
-    }
+
+    setIsAnimating(true); // Start the animation
+
+    // Simulate the gacha process (e.g., 2 seconds)
+    setTimeout(() => {
+      setIsAnimating(false); // Stop the animation after 2 seconds
+      onGacha(); // Complete the lottery process after the animation
+    }, 2000);
 
     try {
       const response = await axios.post('http://localhost:5000/api/gacha', {}, {
@@ -55,10 +61,17 @@ function GachaMachine({ onGacha }) {
         <img
           src="m2.png"
           alt="扭蛋機"
-          className="gacha-image"
+          //className="gacha-image"
           // style={{ width: '1000px'}}
           onClick={handleGachaClick}
         />
+        <div className={`gacha-handle ${isAnimating ? 'animating' : ''}`} onClick={handleGachaClick}>
+          <img
+            src="handle.png"
+            alt="扭蛋機把手"
+            className="handle-image"
+          />
+        </div>
       </div>
       {showModal && (
         <div className="modal">

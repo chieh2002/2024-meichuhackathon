@@ -1,0 +1,138 @@
+[{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319ed"
+  },
+  "name": "豪華度假村住宿券",
+  "count": 10,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319ee"
+  },
+  "name": "智能電視",
+  "count": 10,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319ef"
+  },
+  "name": "3D列印機",
+  "count": 10,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319f0"
+  },
+  "name": "頂級相機",
+  "count": 50,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319f1"
+  },
+  "name": "免費按摩服務",
+  "count": 50,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319f2"
+  },
+  "name": "折疊電動滑板車",
+  "count": 100,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319f3"
+  },
+  "name": "人體工學按摩椅",
+  "count": 100,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319f4"
+  },
+  "name": "高級露營裝備套件",
+  "count": 100,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319f5"
+  },
+  "name": "餐卷50元",
+  "count": 39987,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319f6"
+  },
+  "name": "餐卷30元",
+  "count": 39988,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319f7"
+  },
+  "name": "環保購物袋",
+  "count": 39985,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319f8"
+  },
+  "name": "免費下午茶",
+  "count": 39993,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319f9"
+  },
+  "name": "交通費補助50元",
+  "count": 39989,
+  "type": "gifts"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319fa"
+  },
+  "name": "今日大吉勳章",
+  "count": 500,
+  "type": "medal"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319fb"
+  },
+  "name": "再抽一次",
+  "count": 200,
+  "type": "return"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319fc"
+  },
+  "name": "獲得50點",
+  "count": 8000,
+  "type": "points",
+  "bonus": "50"
+},
+{
+  "_id": {
+    "$oid": "6713ae2d6a7945580cc319fd"
+  },
+  "name": "獲得150點",
+  "count": 5000,
+  "type": "points",
+  "bonus": "150"
+}]

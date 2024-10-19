@@ -141,7 +141,7 @@ function AllRewardsModal({ rewards, onClose }) {
           <option value="Tech Geeks">科技</option>
           <option value="Outdoor Junkies">戶外</option>
           <option value="Food Explorers">美食</option>
-          
+
           {/* 根据需要添加更多兴趣选项 */}
         </select>
 
@@ -151,7 +151,7 @@ function AllRewardsModal({ rewards, onClose }) {
             filteredRewards.map((reward, index) => (
               <div className="reward-item" key={index}>
                 <img src={reward.image} alt={reward.name} style={{ width: '150px', height: '27px' }} />
-                <h4>{reward.name}</h4>
+                {/* <h4>{reward.name}</h4> */}
                 <p>{reward.cost} 點</p>
                 <button onClick={() => alert(`兌換 ${reward.name}`)}>兌換</button>
               </div>

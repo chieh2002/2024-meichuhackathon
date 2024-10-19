@@ -34,9 +34,8 @@ html, body {
   top: 80px;
   right: 100px;
   box-shadow: 0 4px 8px rgba(130, 102, 58, 0.87); /* 添加阴影效果 */
-
-
 }
+
 /* 扭蛋机容器 */
 .gacha-container {
   cursor: pointer;
@@ -50,6 +49,41 @@ html, body {
   margin-right: 200px;
 
 }
+
+/* 扭蛋机把手 */
+.gacha-handle {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* position: absolute; */
+  left:150px;
+  margin-top: 66px;
+  margin-right: 200px;
+
+}
+
+/* Handle animation */
+.gacha-handle.animating .handle-image {
+  animation: rotateHandle 2s linear infinite; /* Rotates for 2 seconds */
+}
+
+/* Keyframe for handle rotation */
+@keyframes rotateHandle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Handle image styling */
+.handle-image {
+  width: 50px; /* Example size, adjust as needed */
+}
+
+
 .app-header {
   position: absolute;
   top: 0;
@@ -59,6 +93,7 @@ html, body {
   text-align: center;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 添加陰影效果 */
 }
+
 /* 奖品展示容器 */
 .rewards-container {
   /* flex: 1; */

@@ -26,17 +26,28 @@ const rewardSchema = new mongoose.Schema({
   cost: Number,
   image: String,  // 每个奖品可以有一个图片的 URL
   interest: String,
+  lastGachaTime: { type: Date, default: null },
   type: { type: String, enum: ['redeem', 'gacha'], default: 'redeem' } // 添加類型屬性
 });
-
 const Reward = mongoose.model('Reward', rewardSchema);
+
+// 定義抽獎獎品的 Schema 和 Model
+const gachaSchema = new mongoose.Schema({
+  name: String,
+  count: Number,
+  bonus: Number,
+  type: { type: String, enum: ['points', 'return', 'gifts', 'medal'], default: 'gifts' } // 添加類型屬性
+});
+const Gacha = mongoose.model('Gacha', gachaSchema);
+
 
 // 定義用戶的 Schema 和 Model
 const userSchema = new mongoose.Schema({
   _id: { type: String },
   points: { type: Number, default: 100 }, // 初始化点数为 100
   redeemedRewards: [{ name: String, cost: Number, date: Date }],
-  interests: [{ type: String , default: "Style Enthusiasts"}]
+  interests: [{ type: String , default: "Style Enthusiasts"}], 
+  lastGachaTime: { type: Date, default: null }
 });
 
 const User = mongoose.model('User', userSchema);
@@ -103,17 +114,6 @@ fastify.get('/api/redeem-rewards', async (request, reply) => {
   }
 });
 
-//  查詢所有抽獎獎品的 API
-fastify.get('/api/gacha-rewards', async (request, reply) => {
-  try {
-    const gachaRewards = await Reward.find({ type: 'gacha' });  // 查找所有抽獎獎品
-    reply.send(gachaRewards);
-  } catch (error) {
-    fastify.log.error('Cannot fetch gacha rewards:', error.stack);
-    reply.code(500).send({ error: '500 server error' });
-  }
-});
-
 // 查詢所有兌換獎品的 API
 fastify.get('/api/allrewards', async (request, reply) => {
   try {
@@ -163,31 +163,119 @@ fastify.post('/api/redeem', async (request, reply) => {
 });
 
 // 抽獎 API
+
+// 抽獎 API 修改
 fastify.post('/api/gacha', async (request, reply) => {
   try {
+    // 获取用户数据
     let user = await User.findById(userId);
     if (!user) {
       reply.code(404).send({ error: 'User not found' });
       return;
     }
 
-    // 查找所有的獎品，從中隨機選擇一個
-    const gachaRewards = await Reward.find({ type: 'redeem' });
+    // 查找所有可抽的奖品
+    const gachaRewards = await Gacha.find();
+    fastify.log.info(`Gacha rewards fetched: ${JSON.stringify(gachaRewards)}`);
+
     if (gachaRewards.length === 0) {
       reply.send({ success: false, message: 'No gacha rewards available' });
       return;
     }
 
-    // 隨機選擇一個獎品
-    const randomIndex = Math.floor(Math.random() * gachaRewards.length);
-    const selectedReward = gachaRewards[randomIndex];
+    // 计算总的奖品数量
+    const totalQuantity = gachaRewards.reduce((sum, reward) => sum + reward.count, 0);
 
+    if (totalQuantity === 0) {
+      reply.send({ success: false, message: 'All rewards are out of stock' });
+      return;
+    }
+
+    // 生成随机数
+    const randomPick = Math.floor(Math.random() * totalQuantity);
+
+    // 根据随机数和权重选择奖品
+    let cumulativeCount = 0;
+    let selectedReward = null;
+
+    for (let reward of gachaRewards) {
+      cumulativeCount += reward.count;
+      if (randomPick < cumulativeCount) {
+        selectedReward = reward;
+        break;
+      }
+    }
+
+    if (!selectedReward) {
+      reply.send({ success: false, message: 'Failed to pick a reward' });
+      return;
+    }
+
+    // 首先扣除80点数一次
+    user.points -= 80;
+
+    // 处理不同类型的奖品
+    if (selectedReward.type === 'return') {
+      // `return` 类型的奖品，允许用户再次抽奖，但更新奖品数量
+      selectedReward.count -= 1;
+      if (selectedReward.count === 0) {
+        await Gacha.deleteOne({ _id: selectedReward._id });
+      } else {
+        await selectedReward.save();
+      }
+
+      // 更新用户的最后抽奖时间
+      user.lastGachaTime = new Date();
+      // 保存用户状态（仅扣除一次点数）
+      await user.save();
+
+      reply.send({ success: true, reward: selectedReward.name, message: 'You can draw again!', points: user.points });
+      return;
+
+    } else if (selectedReward.type === 'points') {
+      // `points` 类型的奖品，增加用户的点数，并减少奖品数量
+      user.points += selectedReward.bonus; // `bonus` 表示额外获得的点数
+
+      selectedReward.count -= 1;
+      if (selectedReward.count === 0) {
+        await Gacha.deleteOne({ _id: selectedReward._id });
+      } else {
+        await selectedReward.save();
+      }
+
+      // 更新用户的最后抽奖时间
+      user.lastGachaTime = new Date();
+      // 保存用户状态（仅扣除一次点数并增加点数）
+      await user.save();
+
+      reply.send({ success: true, reward: selectedReward.name, message: `You've earned ${selectedReward.bonus} points!`, points: user.points });
+      return;
+    }
+
+    // 对于其他类型的奖品，减少数量并保存
+    selectedReward.count -= 1;
+    if (selectedReward.count === 0) {
+      await Gacha.deleteOne({ _id: selectedReward._id });
+    } else {
+      await selectedReward.save();
+    }
+
+    // 更新用户的已兑换奖品
+    user.redeemedRewards.push({ name: selectedReward.name, date: new Date() });
+    user.lastGachaTime = new Date(); // 更新最后一次抽奖时间
+
+    // 保存用户状态（仅扣除一次点数）
+    await user.save();
+
+    // 返回抽中的奖品
     reply.send({ success: true, reward: selectedReward.name, points: user.points });
   } catch (error) {
     fastify.log.error('Fail to play gacha:', error.stack);
     reply.code(500).send({ error: '500 server error' });
   }
 });
+
+
 
 // 點擊遊戲
 fastify.post('/api/update-points', async (request, reply) => {
@@ -211,14 +299,14 @@ fastify.post('/api/update-points', async (request, reply) => {
   }
 });
 // 初始化獎品數據的 API（僅用於初始化或添加獎品）
-// fastify.post('/api/add-reward', async (request, reply) => {
-//   const { name, cost, image, type } = request.body;
+// fastify.post('/api/add-gacha-reward', async (request, reply) => {
+//   const { name, count, type } = request.body;
 //   try {
-//     const reward = new Reward({ name, cost, image, type });
+//     const reward = new Gacha({ name, count, type });
 //     await reward.save();
-//     reply.send({ success: true, message: 'Reward added successfully' });
+//     reply.send({ success: true, message: 'Gacha reward added successfully' });
 //   } catch (error) {
-//     fastify.log.error('Fail to add reward:', error.stack);
+//     fastify.log.error('Fail to add gacha reward:', error.stack);
 //     reply.code(500).send({ error: '500 server error' });
 //   }
 // });
