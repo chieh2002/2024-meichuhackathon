@@ -133,6 +133,8 @@ function App() {
   const [redeemedRewards, setRedeemedRewards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [rewards, setRewards] = useState([]);
+  const [allrewards] = useState([]);
+
   const [redeemedModalVisible, setRedeemedModalVisible] = useState(false);
   const [allRewardsModalVisible, setAllRewardsModalVisible] = useState(false);
 
@@ -163,7 +165,22 @@ function App() {
         setRewards([]);  // 出現錯誤時設置為空數組
       }
     };
- 
+    const AllRewards = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/allrewards');
+        if (response.data && Array.isArray(response.data.allrewards)) {
+          setRewards(response.data.allrewards);  // 设置奖励数据
+        } else {
+          console.error('Error: Invalid rewards data format', response.data);
+          setRewards([]);
+        }
+      } catch (error) {
+        console.error('Error fetching all rewards:', error);
+        setRewards([]);
+      }
+    };
+
+    AllRewards();
     fetchUserData();
     fetchRewards();
   }, []);
@@ -228,7 +245,8 @@ function App() {
       {/* 查询所有奖品的 Modal */}
       {allRewardsModalVisible && (
         <AllRewardsModal
-          rewards={rewards}
+          onRedeem={handleRedeem}
+          rewards={allrewards}
           onClose={() => setAllRewardsModalVisible(false)}
         />
       )}

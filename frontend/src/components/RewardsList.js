@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function RewardsList({ rewards, onRedeem }) {
+  const [selectedInterest, setSelectedInterest] = useState('all'); // 保存當前選擇的興趣類型
   console.log('Rewards data in RewardsList:', rewards); // 调试日志
-
-  // 确保 rewards 是数组，并且不为空
   if (!Array.isArray(rewards) || rewards.length === 0) {
     return <p>目前沒有可用的獎項</p>;
   }
+  const filteredRewards = selectedInterest === 'all'
+    ? rewards
+    : rewards.filter(reward => reward.interests === selectedInterest); // 假設 `interestType` 是獎品的興趣類型
 
+
+  
   return (
     <div className="rewards-list">
       {rewards.map((reward, index) => (
@@ -21,6 +25,7 @@ function RewardsList({ rewards, onRedeem }) {
       ))}
     </div>
   );
+
 }
 
 export default RewardsList;

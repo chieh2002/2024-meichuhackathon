@@ -114,6 +114,22 @@ fastify.get('/api/gacha-rewards', async (request, reply) => {
   }
 });
 
+// 查詢所有兌換獎品的 API
+fastify.get('/api/allrewards', async (request, reply) => {
+  try {
+    fastify.log.info('Fetching all rewards...');
+    const allRewards = await Reward.find({ type: 'redeem' });  // 查找所有可兌換的獎品
+    fastify.log.info(`All rewards fetched: ${JSON.stringify(allRewards)}`);
+    reply.send({
+      success: true,
+      allrewards: allRewards
+    });
+  } catch (error) {
+    fastify.log.error('Cannot fetch all rewards:', error.stack);
+    reply.code(500).send({ error: '500 server error' });
+  }
+});
+
 // 處理兌換獎品的 API
 fastify.post('/api/redeem', async (request, reply) => {
   const { reward } = request.body;  // 從前端獲取獎品資料
@@ -156,7 +172,7 @@ fastify.post('/api/gacha', async (request, reply) => {
     }
 
     // 查找所有的獎品，從中隨機選擇一個
-    const gachaRewards = await Reward.find({ type: 'gacha' });
+    const gachaRewards = await Reward.find({ type: 'redeem' });
     if (gachaRewards.length === 0) {
       reply.send({ success: false, message: 'No gacha rewards available' });
       return;
