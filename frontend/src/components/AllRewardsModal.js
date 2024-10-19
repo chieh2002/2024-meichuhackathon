@@ -137,10 +137,27 @@ function AllRewardsModal({ rewards, onClose }) {
           style={{ padding: '10px', width: '100%', marginBottom: '20px' }}
         >
           <option value="">所有類別</option>
-          <option value="Style Enthusiasts">時尚</option>
-          <option value="Tech Geeks">科技</option>
-          <option value="Outdoor Junkies">戶外</option>
-          <option value="Food Explorers">美食</option>
+          <option value="Outdoor Junkies">戶外狂熱者</option>
+          <option value="Fitness Gurus">健身達人</option>
+          <option value="Creative Souls">創意靈魂</option>
+          <option value="Food Explorers">美食探索者</option>
+          <option value="Diehard Sports Fans">運動狂熱分子</option>
+          <option value="Gamer at Heart">骨灰級遊戲玩家</option>
+          <option value="Globetrotters">環球旅行者</option>
+          <option value="Music Junkies">音樂狂迷</option>
+          <option value="Tech Geeks">科技狂人</option>
+          <option value="Book Lovers">書籍愛好者</option>
+          <option value="Movie Buffs">電影狂熱者</option>
+          <option value="Pet Parents">寵物爸媽</option>
+          <option value="Style Enthusiasts">時尚潮人</option>
+          <option value="Eco Warriors">環保鬥士</option>
+          <option value="Social Butterflies">社交蝴蝶</option>
+          <option value="Health Trackers">健康數據狂</option>
+          <option value="Thrill Seekers">刺激挑戰者</option>
+          <option value="Mindfulness Advocates">正念擁護者</option>
+          <option value="DIY Creators">手作創作者</option>
+          <option value="Community Heroes">社區英雄</option>
+
 
           {/* 根据需要添加更多兴趣选项 */}
         </select>
