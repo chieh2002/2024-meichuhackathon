@@ -174,6 +174,23 @@ fastify.post('/api/gacha', async (request, reply) => {
       return;
     }
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // 设置为当天的 00:00:00
+    const lastGachaTime = user.lastGachaTime ? new Date(user.lastGachaTime) : null;
+
+    let isFirstGachaToday = false;
+
+    // 如果用户从未抽过奖，或者上一次抽奖时间不是今天，视为今天第一次抽奖
+    if (!lastGachaTime || lastGachaTime < today) {
+      isFirstGachaToday = true;
+    }
+
+    // 如果不是今天第一次抽奖，检查用户是否有足够的点数
+    if (!isFirstGachaToday && user.points < 80) {
+      reply.send({ success: false, message: 'Insufficient points' });
+      return;
+    }
+
     // 查找所有可抽的奖品
     const gachaRewards = await Gacha.find();
     fastify.log.info(`Gacha rewards fetched: ${JSON.stringify(gachaRewards)}`);
@@ -211,8 +228,10 @@ fastify.post('/api/gacha', async (request, reply) => {
       return;
     }
 
-    // 首先扣除80点数一次
-    user.points -= 80;
+    // 如果不是今天第一次抽奖，则扣除80点数
+    if (!isFirstGachaToday) {
+      user.points -= 80;
+    }
 
     // 处理不同类型的奖品
     if (selectedReward.type === 'return') {
@@ -226,7 +245,6 @@ fastify.post('/api/gacha', async (request, reply) => {
 
       // 更新用户的最后抽奖时间
       user.lastGachaTime = new Date();
-      // 保存用户状态（仅扣除一次点数）
       await user.save();
 
       reply.send({ success: true, reward: selectedReward.name, message: 'You can draw again!', points: user.points });
@@ -242,11 +260,6 @@ fastify.post('/api/gacha', async (request, reply) => {
       } else {
         await selectedReward.save();
       }
-
-      // 更新用户的最后抽奖时间
-      user.lastGachaTime = new Date();
-      // 保存用户状态（仅扣除一次点数并增加点数）
-      await user.save();
 
       reply.send({ success: true, reward: selectedReward.name, message: `You've earned ${selectedReward.bonus} points!`, points: user.points });
       return;
@@ -264,7 +277,7 @@ fastify.post('/api/gacha', async (request, reply) => {
     user.redeemedRewards.push({ name: selectedReward.name, date: new Date() });
     user.lastGachaTime = new Date(); // 更新最后一次抽奖时间
 
-    // 保存用户状态（仅扣除一次点数）
+    // 保存用户状态
     await user.save();
 
     // 返回抽中的奖品
@@ -274,7 +287,7 @@ fastify.post('/api/gacha', async (request, reply) => {
     reply.code(500).send({ error: '500 server error' });
   }
 });
-
+{/* <ProfileTwoTone /> */}
 
 
 // 點擊遊戲

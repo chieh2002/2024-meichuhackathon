@@ -27,19 +27,18 @@ function GachaMachine({ onGacha }) {
 
     setIsAnimating(true); // Start the animation
 
-    // Simulate the gacha process (e.g., 2 seconds)
-    setTimeout(() => {
-      setIsAnimating(false); // Stop the animation after 2 seconds
-      onGacha(); // Complete the lottery process after the animation
-    }, 2000);
-
     try {
       const response = await axios.post('http://localhost:5000/api/gacha', {}, {
         headers: { 'user-id': 'user123' } // 在实际应用中，使用真实的用户ID
       });
       if (response.data.success) {
+        // Delay the display of the reward by 2 seconds (after animation ends)
+        setTimeout(() => {
+          setReward(response.data.reward); // Set the reward result
+          setShowModal(true); // Show the result in a modal
+          setIsAnimating(false); // Stop the handle rotation
+        }, 1000); // 1-second delay for the animation
         setReward(response.data.reward);
-        setShowModal(true);
         setCanPlay(false);
         onGacha(response.data.reward); // 通知父组件更新点数
       } else {
@@ -67,9 +66,10 @@ function GachaMachine({ onGacha }) {
         />
         <div className={`gacha-handle ${isAnimating ? 'animating' : ''}`} onClick={handleGachaClick}>
           <img
-            src="handle.png"
+            src="扭蛋機把手.png"
             alt="扭蛋機把手"
             className="handle-image"
+            style={{ width: '100px', height:'100px'}}
           />
         </div>
       </div>

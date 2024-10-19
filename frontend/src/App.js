@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GachaMachine from './components/GachaMachine';
 import RewardsList from './components/RewardsList';
+import Survey from './components/survey';  // 引入问卷组件
 import RedeemedModal from './components/RedeemedModal';
 import AllRewardsModal from './components/AllRewardsModal';
 import './App.css';
@@ -11,10 +12,10 @@ function App() {
   const [redeemedRewards, setRedeemedRewards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [rewards, setRewards] = useState([]);
-  const [allRewards, setAllRewards] = useState([]);  // 新增 allRewards 用于存储所有奖品
-
+  const [allRewards, setAllRewards] = useState([]);
   const [redeemedModalVisible, setRedeemedModalVisible] = useState(false);
   const [allRewardsModalVisible, setAllRewardsModalVisible] = useState(false);
+  const [showSurvey, setShowSurvey] = useState(false);  // 新增一个状态用于控制问卷显示
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -47,10 +48,10 @@ function App() {
       try {
         const response = await axios.get('http://localhost:5000/api/allrewards');
         if (response.data && Array.isArray(response.data.allrewards)) {
-          setAllRewards(response.data.allrewards);  // 更新所有奖品的状态
+          setAllRewards(response.data.allrewards);
         } else {
           console.error('Error: Invalid allrewards data format', response.data);
-          setAllRewards([]);  // 错误时设置为空数组
+          setAllRewards([]);
         }
       } catch (error) {
         console.error('Error fetching all rewards:', error);
@@ -60,7 +61,7 @@ function App() {
 
     fetchUserData();
     fetchRewards();
-    fetchAllRewards();  // 获取所有奖品
+    fetchAllRewards();
   }, []);
 
   const handleRedeem = async (reward) => {
@@ -82,16 +83,17 @@ function App() {
   const handleGacha = async () => {
     try {
       const response = await axios.post('http://localhost:5000/api/gacha');
-      console.log('Gacha result:', response.data);
       if (response.data.success) {
         setPoints(response.data.points);
-      } else {
-        // alert('抽獎失敗，請稍後再試');
       }
     } catch (error) {
       console.error('Error playing gacha:', error);
-      // alert('抽獎失敗，請稍後再試');
     }
+  };
+
+  // 用于切换问卷显示的函数
+  const toggleSurvey = () => {
+    setShowSurvey(!showSurvey);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -101,10 +103,12 @@ function App() {
       <header className="app-header">
         <h1 className="app-title">剩餘點數: {points}</h1>
       </header>
-      <div className="panal"></div>
+
+      {/* <div className="panal"></div> */}
       <div className="gacha-container">
         <GachaMachine onGacha={handleGacha} />
       </div>
+
       <div className="rewards-container">
         <h2>可兌換獎品</h2>
         <RewardsList rewards={rewards} onRedeem={handleRedeem} />
@@ -113,6 +117,7 @@ function App() {
           <button onClick={() => setAllRewardsModalVisible(true)}>查詢所有獎項</button>
         </div>
       </div>
+
       {redeemedModalVisible && (
         <RedeemedModal
           redeemedRewards={redeemedRewards}
@@ -122,7 +127,7 @@ function App() {
       {allRewardsModalVisible && (
         <AllRewardsModal
           onRedeem={handleRedeem}
-          rewards={allRewards}  // 传递 allRewards 而不是 allrewards
+          rewards={allRewards}
           onClose={() => setAllRewardsModalVisible(false)}
         />
       )}

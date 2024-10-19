@@ -146,11 +146,11 @@ function AllRewardsModal({ rewards, onClose }) {
         </select>
 
         {/* 显示过滤后的奖品 */}
-        <div className="rewards-list">
+        <div className="allrewards-list">
           {filteredRewards.length > 0 ? (
             filteredRewards.map((reward, index) => (
-              <div className="reward-item" key={index}>
-                <img src={reward.image} alt={reward.name} style={{ width: '150px', height: '27px' }} />
+              <div className="allreward-item" key={index}>
+                <img src={reward.image} alt={reward.name} style={{ width: '187px', height: '34px' }} />
                 {/* <h4>{reward.name}</h4> */}
                 <p>{reward.cost} 點</p>
                 <button onClick={() => alert(`兌換 ${reward.name}`)}>兌換</button>
