@@ -122,10 +122,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GachaMachine from './components/GachaMachine';
-import PointsDisplay from './components/PointsDisplay';
 import RewardsList from './components/RewardsList';
 import RedeemedModal from './components/RedeemedModal';
 import AllRewardsModal from './components/AllRewardsModal';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -150,13 +150,20 @@ function App() {
 
     const fetchRewards = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/rewards');
-        setRewards(response.data);
+        const response = await axios.get('http://localhost:5000/api/redeem-rewards');
+        console.log('Fetched rewards:', response.data);  // 調試用
+        if (response.data && Array.isArray(response.data.rewards)) {
+          setRewards(response.data.rewards);  // 確保 rewards 是一個數組
+        } else {
+          console.error('Rewards data is not in expected format:', response.data);
+          setRewards([]);  // 如果數據格式不正確，設置為空數組以防止錯誤
+        }
       } catch (error) {
         console.error('Error fetching rewards:', error);
+        setRewards([]);  // 出現錯誤時設置為空數組
       }
     };
-
+ 
     fetchUserData();
     fetchRewards();
   }, []);
@@ -194,16 +201,18 @@ function App() {
   if (loading) return <div>Loading...</div>;
 
   return (
+    
     <div className="app-container">
       <header className="app-header">
         <h1 className="app-title">剩餘點數: {points}</h1>  {/* 顯示剩餘點數 */}
       </header>
+      <div className="panal"></div>
       <div className="gacha-container">
           <GachaMachine onGacha={handleGacha} />
-          <PointsDisplay points={points} />
+          {/* <PointsDisplay points={points} /> */}
       </div>
       <div className="rewards-container">
-        <h2>獎項</h2>
+        <h2>可兌換獎品</h2>
         <RewardsList rewards={rewards} onRedeem={handleRedeem} />
         <div className="buttons">
           <button onClick={() => setRedeemedModalVisible(true)}>已兌換獎項</button>
@@ -216,8 +225,12 @@ function App() {
           onClose={() => setRedeemedModalVisible(false)}
         />
       )}
+      {/* 查询所有奖品的 Modal */}
       {allRewardsModalVisible && (
-        <AllRewardsModal rewards={rewards} onClose={() => setAllRewardsModalVisible(false)} />
+        <AllRewardsModal
+          rewards={rewards}
+          onClose={() => setAllRewardsModalVisible(false)}
+        />
       )}
     </div>
   );

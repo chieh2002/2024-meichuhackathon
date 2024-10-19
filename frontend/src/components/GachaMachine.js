@@ -53,7 +53,7 @@ function GachaMachine({ onGacha }) {
     <div>
       <div className="gacha-container" style={{cursor: 'pointer'}}>
         <img
-          src="machine.png"
+          src="m2.png"
           alt="扭蛋機"
           className="gacha-image"
           // style={{ width: '1000px'}}

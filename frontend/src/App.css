@@ -1,3 +1,9 @@
+html, body {
+  height: 100%;                  /* 確保 html 和 body 的高度填滿整個視窗 */
+  margin: 0;
+  padding: 0;
+}
+
 /* 主容器，使用 Flexbox 布局 */
 .app-container {
   display: flex;
@@ -11,25 +17,37 @@
   background-size: cover;           /* 背景图片覆盖整个容器 */
   background-position: center;
   font-family: Arial, sans-serif;
-  border: 1px solid black;
   justify-content: flex-start;
 }
+.panal{
+  /* display: flex; */
+  position: absolute;
+  /* background-image: url('/public/panal.png');  背景图片路径 */
+  opacity: 0.8;
+  flex-direction: row;      /* 使子元素水平方向排列 */
+  align-items: flex-start;  /* 子元素對齊到頂部 */
+  justify-content: space-between;
+  padding: 20px;            /* 外層容器內部的間距 */
+  background-color: #f0f0f0;/* 添加背景色 (淺灰) */
+  width: 1280px;
+  height: 600px;
+  top: 80px;
+  right: 100px;
+  box-shadow: 0 4px 8px rgba(130, 102, 58, 0.87); /* 添加阴影效果 */
 
+
+}
 /* 扭蛋机容器 */
 .gacha-container {
-  /* cursor: pointer; */
+  cursor: pointer;
   position: absolute;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   /* position: absolute; */
-  left:100px;
-  margin-top: 87px;
+  left:150px;
+  margin-top: 66px;
   margin-right: 200px;
-  border-radius: 10px;
-  border: 1px solid black;
-
 
 }
 .app-header {
@@ -49,10 +67,20 @@
   padding: 20px;
   border-radius: 10px;
   position: absolute;
+  /* width: 40%; */
   top: 87px;
   right: 200px; 
   max-width: 400px;               /* 固定宽度 */
   height: 550px;              /* 固定高度 */
+}
+input[type="text"] {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 }
 
 /* 奖品列表 */
@@ -80,12 +108,16 @@
   max-width: 100%;
   height: auto;
 }
-
+.reward-card {
+  width: 200px;
+  height: 150px;
+  object-fit: cover; /* 保持比例並裁切圖片以適應大小 */
+}
 /* 按钮样式 */
 .buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 200px;
+  margin-top: 150px;
 }
 
 .buttons button {
@@ -95,6 +127,8 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 按钮阴影 */
+   transition: background-color 0.5s ease; /*添加渐变效果 */
 }
 
 .buttons button:hover {

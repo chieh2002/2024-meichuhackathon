@@ -24,7 +24,9 @@ const connectDB = async () => {
 const rewardSchema = new mongoose.Schema({
   name: String,
   cost: Number,
-  image: String  // 每个奖品可以有一个图片的 URL
+  image: String,  // 每个奖品可以有一个图片的 URL
+  interest: String,
+  type: { type: String, enum: ['redeem', 'gacha'], default: 'redeem' } // 添加類型屬性
 });
 
 const Reward = mongoose.model('Reward', rewardSchema);
@@ -33,7 +35,8 @@ const Reward = mongoose.model('Reward', rewardSchema);
 const userSchema = new mongoose.Schema({
   _id: { type: String },
   points: { type: Number, default: 100 }, // 初始化点数为 100
-  redeemedRewards: [{ name: String, cost: Number, date: Date }]
+  redeemedRewards: [{ name: String, cost: Number, date: Date }],
+  interests: [{ type: String , default: "Style Enthusiasts"}]
 });
 
 const User = mongoose.model('User', userSchema);
@@ -47,7 +50,7 @@ fastify.get('/api/user', async (request, reply) => {
     let user = await User.findById(userId);
     if (!user) {
       // 如果用戶不存在，初始化用戶數據
-      user = new User({ _id: userId, points: 100, redeemedRewards: [] });
+      user = new User({ _id: userId, points: 100, redeemedRewards: [], interests: [] });
       await user.save();
     }
     reply.send(user);
@@ -57,13 +60,56 @@ fastify.get('/api/user', async (request, reply) => {
   }
 });
 
-// 查詢所有獎品的 API
-fastify.get('/api/rewards', async (request, reply) => {
+// 查詢所有兌換獎品的 API
+fastify.get('/api/redeem-rewards', async (request, reply) => {
   try {
-    const rewards = await Reward.find();
-    reply.send(rewards);
+    // 假設 userId 代表當前用戶，查詢該用戶的興趣
+    let user = await User.findById(userId);
+    if (!user || !user.interests || user.interests.length === 0) {
+      reply.send({ success: false, message: 'User or interests not found' });
+      return;
+    }
+
+    fastify.log.info(`User interests: ${user.interests}`);
+
+    // 根据用户兴趣从数据库中查询奖品
+    const userInterestRewards = await Reward.find({
+      type: 'redeem',
+      interest: { $in: user.interests }  // 查询匹配用户兴趣的奖品
+    });
+
+    fastify.log.info(`User interest rewards: ${JSON.stringify(userInterestRewards)}`);
+
+    // 查询所有可供兑换的奖品
+    const allRedeemableRewards = await Reward.find({ type: 'redeem' });
+    fastify.log.info(`All redeemable rewards: ${JSON.stringify(allRedeemableRewards)}`);
+
+    // 排除掉用户兴趣对应的奖品，获取剩余的奖品
+    const remainingRewards = allRedeemableRewards.filter(reward => 
+      !userInterestRewards.some(interestReward => interestReward.name === reward.name)
+    );
+    fastify.log.info(`Remaining rewards: ${JSON.stringify(remainingRewards)}`);
+
+    // 随机选择剩余的奖品，补全到6个
+    const randomRemainingRewards = remainingRewards.sort(() => 0.5 - Math.random()).slice(0, 6 - userInterestRewards.length);
+
+    // 合并用户的兴趣奖品和随机选出的剩余奖品
+    const finalRewards = [...userInterestRewards, ...randomRemainingRewards];
+    fastify.log.info(`Final rewards to return: ${JSON.stringify(finalRewards)}`);
+    reply.send({ success: true, rewards: finalRewards });
   } catch (error) {
-    fastify.log.error('Cannot fetch rewards:', error.stack);
+    fastify.log.error('Cannot fetch redeem rewards:', error.stack);
+    reply.code(500).send({ error: '500 server error' });
+  }
+});
+
+//  查詢所有抽獎獎品的 API
+fastify.get('/api/gacha-rewards', async (request, reply) => {
+  try {
+    const gachaRewards = await Reward.find({ type: 'gacha' });  // 查找所有抽獎獎品
+    reply.send(gachaRewards);
+  } catch (error) {
+    fastify.log.error('Cannot fetch gacha rewards:', error.stack);
     reply.code(500).send({ error: '500 server error' });
   }
 });
@@ -76,6 +122,12 @@ fastify.post('/api/redeem', async (request, reply) => {
     let user = await User.findById(userId);
     if (!user) {
       reply.code(404).send({ error: 'User not found' });
+      return;
+    }
+
+    const redeemReward = await Reward.findOne({ name: reward.name, type: 'redeem' });
+    if (!redeemReward) {
+      reply.send({ success: false, message: 'Reward not found or not redeemable' });
       return;
     }
 
@@ -103,26 +155,16 @@ fastify.post('/api/gacha', async (request, reply) => {
       return;
     }
 
-    // if (user.points < 10) {  // 假設每次抽獎需要 10 點
-    //   reply.send({ success: false, message: 'Not enough points to play gacha' });
-    //   return;
-    // }
-
     // 查找所有的獎品，從中隨機選擇一個
-    const rewards = await Reward.find();
-    if (rewards.length === 0) {
-      reply.send({ success: false, message: 'No rewards available' });
+    const gachaRewards = await Reward.find({ type: 'gacha' });
+    if (gachaRewards.length === 0) {
+      reply.send({ success: false, message: 'No gacha rewards available' });
       return;
     }
 
     // 隨機選擇一個獎品
-    const randomIndex = Math.floor(Math.random() * rewards.length);
-    const selectedReward = rewards[randomIndex];
-
-    // 扣除點數，保存抽中的獎品
-    // user.points -= 10;  // 每次抽獎扣除 10 點
-    // user.redeemedRewards.push({ name: selectedReward.name, cost: 0, date: new Date() }); // 抽奖的奖品不再扣除额外点数
-    // await user.save();
+    const randomIndex = Math.floor(Math.random() * gachaRewards.length);
+    const selectedReward = gachaRewards[randomIndex];
 
     reply.send({ success: true, reward: selectedReward.name, points: user.points });
   } catch (error) {
@@ -131,18 +173,39 @@ fastify.post('/api/gacha', async (request, reply) => {
   }
 });
 
-// 初始化獎品數據的 API（僅用於初始化或添加獎品）
-fastify.post('/api/add-reward', async (request, reply) => {
-  const { name, cost, image } = request.body;
+// 點擊遊戲
+fastify.post('/api/update-points', async (request, reply) => {
+  const { points } = request.body;
+
   try {
-    const reward = new Reward({ name, cost, image });
-    await reward.save();
-    reply.send({ success: true, message: 'Reward added successfully' });
+    let user = await User.findById(userId);
+    if (!user) {
+      reply.code(404).send({ error: 'User not found' });
+      return;
+    }
+
+    // 增加用戶的點數
+    user.points += points;
+    await user.save();
+
+    reply.send({ success: true, points: user.points });
   } catch (error) {
-    fastify.log.error('Fail to add reward:', error.stack);
+    fastify.log.error('Error updating points:', error.stack);
     reply.code(500).send({ error: '500 server error' });
   }
 });
+// 初始化獎品數據的 API（僅用於初始化或添加獎品）
+// fastify.post('/api/add-reward', async (request, reply) => {
+//   const { name, cost, image, type } = request.body;
+//   try {
+//     const reward = new Reward({ name, cost, image, type });
+//     await reward.save();
+//     reply.send({ success: true, message: 'Reward added successfully' });
+//   } catch (error) {
+//     fastify.log.error('Fail to add reward:', error.stack);
+//     reply.code(500).send({ error: '500 server error' });
+//   }
+// });
 
 // 啟動 Fastify 伺服器
 const start = async () => {

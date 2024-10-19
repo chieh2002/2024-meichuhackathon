@@ -8,7 +8,7 @@ function RedeemedModal({ redeemedRewards, onClose }) {
         <ul>
           {redeemedRewards.map((reward, index) => (
             <li key={index}>
-              {reward.name} - {reward.cost} 點數 - 兌換時間：{new Date(reward.date).toLocaleDateString()}
+              {reward.name} - {reward.cost} 點 - 兌換時間：{new Date(reward.date).toLocaleDateString()}
             </li>
           ))}
         </ul>
