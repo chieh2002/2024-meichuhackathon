@@ -136,10 +136,12 @@ function AllRewardsModal({ rewards, onClose }) {
           onChange={(e) => setSelectedInterest(e.target.value)}
           style={{ padding: '10px', width: '100%', marginBottom: '20px' }}
         >
-          <option value="">所有兴趣</option>
-          <option value="Style Enthusiasts">时尚爱好者</option>
-          <option value="Tech Geeks">技术极客</option>
-          <option value="Outdoor Junkies">户外爱好者</option>
+          <option value="">所有類別</option>
+          <option value="Style Enthusiasts">時尚</option>
+          <option value="Tech Geeks">科技</option>
+          <option value="Outdoor Junkies">戶外</option>
+          <option value="Food Explorers">美食</option>
+          
           {/* 根据需要添加更多兴趣选项 */}
         </select>
 

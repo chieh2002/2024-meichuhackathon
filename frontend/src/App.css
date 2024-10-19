@@ -117,7 +117,7 @@ input[type="text"] {
 .buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 45px;
+  margin-top: 50px;
 }
 
 .buttons button {

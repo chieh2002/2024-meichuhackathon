@@ -88,7 +88,7 @@ fastify.get('/api/redeem-rewards', async (request, reply) => {
     const remainingRewards = allRedeemableRewards.filter(reward => 
       !userInterestRewards.some(interestReward => interestReward.name === reward.name)
     );
-    fastify.log.info(`Remaining rewards: ${JSON.stringify(remainingRewards)}`);
+    // fastify.log.info(`Remaining rewards: ${JSON.stringify(remainingRewards)}`);
 
     // 随机选择剩余的奖品，补全到6个
     const randomRemainingRewards = remainingRewards.sort(() => 0.5 - Math.random()).slice(0, 6 - userInterestRewards.length);

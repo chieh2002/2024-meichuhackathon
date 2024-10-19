@@ -100,6 +100,7 @@ function App() {
       <header className="app-header">
         <h1 className="app-title">剩餘點數: {points}</h1>
       </header>
+      <div className="panal"></div>
       <div className="gacha-container">
         <GachaMachine onGacha={handleGacha} />
       </div>

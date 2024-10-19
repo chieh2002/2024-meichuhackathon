@@ -6,12 +6,7 @@ function RewardsList({ rewards, onRedeem }) {
   if (!Array.isArray(rewards) || rewards.length === 0) {
     return <p>目前沒有可用的獎項</p>;
   }
-  const filteredRewards = selectedInterest === 'all'
-    ? rewards
-    : rewards.filter(reward => reward.interests === selectedInterest); // 假設 `interestType` 是獎品的興趣類型
 
-
-  
   return (
     <div className="rewards-list">
       {rewards.map((reward, index) => (
