@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  .fullscreen-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; /* 將背景放在內容的後面 */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* 確保頁面高度是 100% */
+    overflow: hidden; /* 禁止頁面滾動，確保背景填滿整個畫面 */
+}
+
+.main-content {
+    position: relative;
+    z-index: 1; /* 內容顯示在背景圖片上方 */
+    padding: 20px; /* 根據需求調整內容區域的樣式 */
+}
+
+/* 添加到你的 CSS 文件中 */
+.container {
+    background-color: rgba(255, 0, 0, 0.5); /* 半透明紅色背景 */
+    padding: 20px; /* 增加內邊距 */
+    display: flex;
+    flex-direction: column; /* 垂直排列 */
+    align-items: center; /* 置中對齊 */
+    width: 50%; /* 只佔據畫面的右半部分 */
+    position: absolute; /* 使容器能在右側 */
+    right: 0; /* 靠右邊對齊 */
+    height: 100%; /* 高度為100% */
+    overflow-y: auto; 
+    max-height: 100%; 
+  }
+  
+  .task-button {
+    margin: 5px 0; /* 任務按鈕的上下間距 */
+    font-size: 40 px; /* 增大字體大小 */
+    background-color: white; /* 任務按鈕背景為白色 */
+    padding: 8px 20px; /* 增加按鈕內邊距，左右內邊距改為 20px */
+    border: none; /* 去除邊框 */
+    border-radius: 5px; /* 增加圓角 */
+    cursor: pointer; /* 鼠標懸停時為手形 */
+    color: gray; /* 任務名稱顏色為灰色 */
+    width: 100%; /* 按鈕寬度佔容器的三分之一 */
+    text-align: center; /* 文字置中 */
+  }
+  
+  .task-button:hover {
+    background-color: #b44a4a; /* 滑鼠懸停時的背景顏色 */
+  }
+  
+  .sub-task-button {
+    margin: 5px 0; /* 任務按鈕的上下間距 */
+    font-size: 14px; /* 增大字體大小 */
+    background-color: #ad2c2c; /* 任務按鈕背景顏色 */
+    padding: 8px 20px; /* 增加按鈕內邊距，左右內邊距改為 20px */
+    border: none; /* 去除邊框 */
+    border-radius: 5px; /* 增加圓角 */
+    cursor: pointer; /* 鼠標懸停時為手形 */
+    color: white; /* 任務名稱顏色為白色 */
+    width: 100%; /* 按鈕寬度佔容器的三分之一 */
+    text-align: center; /* 文字置中 */
+  }
+  
+  .sub-task-button:hover {
+    background-color: #b44a4a; /* 滑鼠懸停時的背景顏色 */
+  }
+  .category::-webkit-scrollbar {
+    display: none; /* 隱藏滾動條 */
+  }
+  .category {
+    margin: 10px 0; /* 每個類別的上下間距 */
+    overflow-y: auto; 
+    max-height: 200px; 
+    padding: 10px; /* 添加內邊距以增強可點擊區域 */
+    background-color: white; /* 類別的背景顏色 */
+    border-radius: 5px; /* 增加圓角 */
+    width: 100%; /* 使類別佔據全寬 */
+    text-align: center; /* 中間對齊文本 */
+    color: black; /* 文本顏色為黑色 */
+  }
+  .button-container {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center;     /* 垂直居中 */
+    gap: 20px;               /* 按鈕之間的間距 */
+    margin-top: 20px;        /* 距離上方的間距 */
+  }
+  

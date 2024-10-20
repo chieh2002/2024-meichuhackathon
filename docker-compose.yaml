@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    environment:
+      SERVER_HOST: '0.0.0.0'
+      SERVER_PORT: '8080'
+      MONGODB_CONNECTION_STRING: 'mongodb://db:27017/message-board'
+
+  db:
+    image: mongo:8.0.1
+    ports:
+      - '27017'
+    volumes:
+      - ./db-data:/data/db
+
+  mongo-express:
+    image: mongo-express:latest
+    ports:
+      - '8081:8081'
+    environment:
+      ME_CONFIG_MONGODB_SERVER: 'db'
+      ME_CONFIG_BASICAUTH_USERNAME: 'admin'
+      ME_CONFIG_BASICAUTH_PASSWORD: 'admin'

@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    font-size: 18px;
+  }
+  
+  input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  

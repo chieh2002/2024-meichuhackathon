@@ -1,0 +1,94 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  background-color: #dfb8b8;
+  width: 200px;
+  padding: 20px;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #fae0e3;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sidebar button.active {
+  background-color: #4d0004;
+  color: white;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.search-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-section input {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.question-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.question-card h3 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.question-card p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* styles.css */
+
+.answer-card {
+  display: flex;
+  justify-content: space-between;  /* 左右排列 */
+  align-items: center;             /* 垂直居中 */
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.like-container {
+  display: flex;
+  align-items: center;             /* 垂直居中對齊按鈕與文字 */
+}
+
+.like-button {
+  padding: 5px 10px;               /* 調整按鈕大小 */
+  font-size: 12px;                 /* 調整字體大小 */
+  margin-right: 10px;              /* 與文字之間的距離 */
+}
+
+.like-container p {
+  margin: 0;                       /* 移除段落的預設邊距 */
+  font-size: 14px;                 /* 調整字體大小 */
+}

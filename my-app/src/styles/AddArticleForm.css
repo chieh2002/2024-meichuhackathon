@@ -1,0 +1,72 @@
+/* src/styles/AddArticleForm.css */
+
+.form-container {
+    max-width: 600px; /* 設定最大寬度 */
+    margin: 0 auto; /* 使表單居中 */
+    padding: 20px; /* 內邊距 */
+    border-radius: 8px; /* 圓角邊框 */
+    background-color: #f9f9f9; /* 背景顏色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 陰影效果 */
+}
+
+h2 {
+    text-align: center; /* 標題居中 */
+    color: #333; /* 標題顏色 */
+}
+
+input {
+    width: 100%; /* 輸入框全寬 */
+    padding: 12px; /* 內邊距 */
+    margin: 10px 0; /* 上下邊距 */
+    border: 1px solid #ccc; /* 邊框 */
+    border-radius: 4px; /* 圓角 */
+    font-size: 16px; /* 字體大小 */
+    transition: border-color 0.3s ease; /* 邊框顏色過渡效果 */
+}
+
+input:focus {
+    border-color: #af4c4c; /* 獲得焦點時的邊框顏色 */
+    outline: none; /* 移除焦點輪廓 */
+}
+
+button {
+    width: 10%; /* 按鈕全寬 */
+    padding: 12px; /* 內邊距 */
+    background-color: #af4c61; /* 背景顏色 */
+    color: white; /* 字體顏色 */
+    border: none; /* 無邊框 */
+    border-radius: 4px; /* 圓角 */
+    font-size: 16px; /* 字體大小 */
+    cursor: pointer; /* 游標為手型 */
+    transition: background-color 0.3s ease; /* 背景顏色過渡效果 */
+}
+
+button:hover {
+    background-color: #a04545; /* 滑鼠懸停時的背景顏色 */
+}
+
+button:disabled {
+    background-color: #dddddd; /* 禁用狀態的背景顏色 */
+    cursor: not-allowed; /* 禁用狀態的游標 */
+}
+
+button2 {
+    width: 80%; /* 按鈕全寬 */
+    padding: 12px; /* 內邊距 */
+    background-color: #af4c4c; /* 背景顏色 */
+    color: white; /* 字體顏色 */
+    border: none; /* 無邊框 */
+    border-radius: 4px; /* 圓角 */
+    font-size: 16px; /* 字體大小 */
+    cursor: pointer; /* 游標為手型 */
+    transition: background-color 0.3s ease; /* 背景顏色過渡效果 */
+}
+
+button2:hover {
+    background-color: #a04545; /* 滑鼠懸停時的背景顏色 */
+}
+
+button2:disabled {
+    background-color: #ddd; /* 禁用狀態的背景顏色 */
+    cursor: not-allowed; /* 禁用狀態的游標 */
+}

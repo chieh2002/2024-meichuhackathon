@@ -1,0 +1,114 @@
+@host = http://localhost:8888
+
+GET {{host}}/ping
+
+### Get all messages
+GET {{host}}/api/v1/messages/
+
+### Get open_broad_question
+POST {{host}}/api/v1/open_broad
+Content-Type: application/json
+
+{
+  "broadType": "Tech"
+}
+
+### Create a new message
+POST {{host}}/api/v1/messages
+Content-Type: application/json
+
+{
+  "content": "Hello, World!1",
+  "author": "John",
+  "hashtag": ["python", "docker", "c"],
+  "broadType": "Tech",
+  "questionId": ""
+}
+
+### Create a new question
+POST {{host}}/api/v1/addquestion
+Content-Type: application/json
+
+{
+  "content": "Hello, World! my life is ...",
+  "author": "LCC",
+  "hashtag": ["no game no life"],
+  "broadType": "Life",
+  "questionID": "",
+  "likeNum": []
+}
+
+
+### Create a new answer
+POST {{host}}/api/v1/addAnswer
+Content-Type: application/json
+
+{
+  "content": "BHello, World!",
+  "author": "John",
+  "hashtag": [],
+  "broadType": "Tech",
+  "questionID": "de5de99b-1646-4572-8f32-0715fde2e174",
+  "likeNum": ["userid1"]
+}
+
+
+### get answers from question
+POST {{host}}/api/v1/getanswers
+Content-Type: application/json
+
+{
+  "questionId":"de5de99b-1646-4572-8f32-0715fde2e174"
+}
+
+
+
+
+### test
+GET {{host}}/api/v1/test
+
+### user likes article
+POST {{host}}/api/v1/userlikearticle
+Content-Type: application/json
+
+{
+  "userId": "12344",
+  "messageId": "8d18e93c-40f9-477c-84e1-4b491c668de0"
+}
+
+### user not likes article
+POST {{host}}/api/v1/usernotlikearticle
+Content-Type: application/json
+
+{
+  "userId": "",
+  "messageId": ""
+}
+
+### get task_type
+GET {{host}}/api/task/v1/tasks
+
+### get task by type
+POST {{host}}/api/task/v1/tasks_by_type
+Content-Type: application/json
+
+{
+  "taskType": "短期任務"
+}
+
+### get task by id
+POST {{host}}/api/task/v1/task_detail
+Content-Type: application/json
+
+{
+  "taskId": "1"
+}
+
+### get task by id
+POST {{host}}/api/task/v1/accept_task
+Content-Type: application/json
+
+{
+  "userId":"12344", 
+  "taskId":"1"
+}
