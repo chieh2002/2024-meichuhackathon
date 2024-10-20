@@ -30,7 +30,7 @@ const Answer: React.FC<AnswerProps> = ({ answer }) => {
   <h4>{answer.content}</h4>
   <p>作者: {answer.author}</p>
   <div className="like-container">
-    <button className="like-button">like</button>
+    <button className="like-button">♥</button>
     <p>{answer.likeNum.length} 人</p>
   </div>
 </div>
